@@ -5,7 +5,6 @@ const arr4= [9, 6, 7, 8, 6, 8, 7] // esperado 9
 
 
 const findUnique = (arr) =>{
-	const tempArray = [...new Set(arr)]; //creamos una copia del array que llega por parametro, pero sin elementos repetidos
 
 	const uniqueNumber = []; //declaramos el array donde haremos el push del numero único
 
