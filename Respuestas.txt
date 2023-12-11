@@ -1,0 +1,48 @@
+1- ¿Cómo abordaste el problema?
+2 -¿Qué estrategia utilizaste para identificar el número único?
+3- ¿Cómo manejas los casos donde el conjunto no cumple con las condiciones?
+
+1- Comencé leyendo el enunciado e intentando realizar un diagrama en mi cabeza de como debía ejecutarse el programa para resolver cada una de los problemas. Dividir el problema en problemas mas pequeños que pudieran resolverse con acciones.
+
+2- Utilicé una función que ofrece Javascript que permite guardar los valores de un array sin repetir los mismos, de esa manera creaba un nuevo array sin los repetidos, luego ordeno el array original con el metodo de array "sort" y lo recorremos con un for. 
+
+3- Establecemos un condicional "if" en el cual evaluamos, con el metodo de array "includes", si el valor que tenemos actualmente ya lo habiamos agregado a nuestro array uniqueNumbers (creado previamente), si la condicion se cumple, ese numero que agregamos, lo eliminamos del array uniqueNumbers para solo tener el numero único. Si la condicion no se cumple, pasamos al "else if" donde evaluamos si el numero unico cumple con las otras condiciones (ser mayor a 3 y ser un numero impar), si cumple esas condiciones entonces estamos en presencia de nuestro tan ansiado numero unico, y lo pusheamos a su array. en caso de que la primer condicion pase, pero el numero unico no sea mayor a 3 o no sea un numero impar el programa no lo pusheara al array.
+
+
+
+----- CODIGO JS -----
+
+const arr1= [1, 3, 6, 2, 2, 3, 1] // esperado 6
+const arr2= [5, 6, 7, 6, 15, 5, 7] // esperado 15
+const arr3= [1, 2, 0, 0, 2, 3, 1] // esperado 3
+const arr4= [9, 6, 7, 8, 6, 8, 7] // esperado 9
+
+
+const findUnique = (arr) =>{
+	const tempArray = [...new Set(arr)]; //creamos una copia del array que llega por parametro, pero sin elementos repetidos
+
+	const uniqueNumber = []; //declaramos el array donde haremos el push del numero único
+
+	arr.sort(); //Ordenamos el array original
+
+	 for(let i = 0 ; i < arr.length ; i++){
+
+		//establecemos como condición que si el numero actual (arr[i]) ya existe dentro del array uniqueNumber, lo elimine
+		if(uniqueNumber.includes(arr[i])){
+			uniqueNumber.pop(arr[i])
+		}
+		//En caso que la condición anterior no se cumpla evaluamos si el numero es mayor o igual a 3 y que sea un numero impar, caso contrario el programa no pusheará el numero al array
+		else if(arr[i] >= 3 && arr[i] % 3 == 0 ){ 
+			uniqueNumber.push(arr[i])
+		}
+		else{
+			null
+		}
+	}
+	console.log(uniqueNumber)
+	return uniqueNumber
+}
+findUnique(arr1)
+findUnique(arr2)
+findUnique(arr3)
+findUnique(arr4)
